@@ -48,7 +48,7 @@ export class SearchBar extends React.Component {
 
     render(){
         return (
-            <div>
+            <div style={{display: 'inline-flex'}}>
                 <input type="text" className="form-control" placeholder="Ingredient" value={this.state.value} onChange={this.handleChange}/>
                 <button onClick={this.handleSubmit} className="btn btn-secondary">Search</button>
             </div>
