@@ -12,7 +12,6 @@ export class SearchBar extends React.Component {
     }
 
     handleChange(e){
-        console.log('changed');
         this.setState({value: e.target.value});
     }
 
@@ -38,6 +37,9 @@ export class SearchBar extends React.Component {
             });
 
             this.props.getData(this.state.results);
+            this.setState({
+                value: ''
+            })
         })
 
     }

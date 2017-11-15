@@ -1,18 +1,33 @@
 import React from 'react';
 import {SearchBar} from "./SearchBar";
+import './Search.css';
+import {Ingredient} from "./Ingredient";
 
 export class Search extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            ingredients : []
+            ingredients : [],
+            myIngredients: []
         }
     }
 
 
     getData = data => {
         this.setState({ingredients: data});
+    };
+
+    getIngredient = ingredient => {
+        let tempIngredients = this.state.myIngredients;
+        tempIngredients.push(ingredient);
+        this.setState({
+            myIngredients: tempIngredients
+        });
+
+        setTimeout(()=>{
+            this.props.getIngredients(this.state.myIngredients)
+        }, 100);
     };
 
     render(){
@@ -22,7 +37,7 @@ export class Search extends React.Component{
                 <SearchBar getData={this.getData}/>
                 <ul>
                     {this.state.ingredients.map((item, key) => {
-                        return <li key={key}>{item}</li>
+                        return <Ingredient getIngredient={this.getIngredient} key={key}> {item} </Ingredient>
                     })}
                 </ul>
             </div>

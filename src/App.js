@@ -5,6 +5,21 @@ import { Search } from "./Search/Search";
 import {MyPantry} from "./MyPantry/MyPantry";
 
 class App extends Component {
+  constructor(props){
+   super(props);
+
+   this.state = {
+       myIngredients: []
+   };
+
+   this.getIngredients = this.getIngredients.bind(this);
+  }
+
+  getIngredients(ingredients){
+      this.setState({myIngredients: ingredients});
+      setTimeout(console.log(this.state), 100);
+  }
+
   render() {
     return (
        <div className="App">
@@ -12,13 +27,13 @@ class App extends Component {
                <h1 className="App-title">Pantry</h1>
            </div>
 
-           <div className="container">
+           <div className="container-fluid">
                <div className="row">
                    <div className="col-sm-6">
-                       <Search/>
+                       <Search getIngredients={this.getIngredients}/>
                    </div>
                    <div className="col-sm-6">
-                       <MyPantry/>
+                       <MyPantry ingredients={this.state.myIngredients}/>
                    </div>
                </div>
            </div>
