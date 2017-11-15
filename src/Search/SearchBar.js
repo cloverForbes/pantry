@@ -5,7 +5,7 @@ export class SearchBar extends React.Component {
     constructor(props){
         super(props);
 
-        this.state = {value: '', results: ''};
+        this.state = {value: '', results: '', searches: 0};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,8 +38,10 @@ export class SearchBar extends React.Component {
 
             this.props.getData(this.state.results);
             this.setState({
-                value: ''
+                value: '',
+                searches: this.state.searches + 1
             });
+            this.props.getSearches(this.state.searches);
         })
 
     }

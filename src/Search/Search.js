@@ -9,7 +9,8 @@ export class Search extends React.Component{
 
         this.state = {
             ingredients : [],
-            myIngredients: []
+            myIngredients: [],
+            searches : 0
         }
     }
 
@@ -22,7 +23,7 @@ export class Search extends React.Component{
         let tempIngredients = this.state.myIngredients;
         tempIngredients.push(ingredient);
         this.setState({
-            myIngredients: tempIngredients
+            myIngredients: tempIngredients,
         });
 
         setTimeout(()=>{
@@ -30,15 +31,20 @@ export class Search extends React.Component{
         }, 100);
     };
 
+    getSearches= num =>{
+        this.setState({searches: num});
+        console.log(num);
+    };
+
     render(){
         return (
             <div className="Panel">
                 <h2 className="panel-title">Search</h2>
-                <SearchBar  getData={this.getData}/>
+                <SearchBar getSearches={this.getSearches}  getData={this.getData}/>
                 <ul>
                     {this.state.ingredients.map((item, key) => {
-                        console.log(item);
-                        return <Ingredient visible={true} getIngredient={this.getIngredient} name={item} key={key} />
+                        console.log(this.state.searches);
+                        return <Ingredient visible={true} getIngredient={this.getIngredient} name={item} key={this.state.searches +''+key} />
                     })}
                 </ul>
             </div>

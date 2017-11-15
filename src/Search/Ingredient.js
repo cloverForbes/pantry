@@ -26,7 +26,7 @@ export class Ingredient extends React.Component {
         };
         return(
           <div onClick={this.handleClick}  className="Ingredient container">
-              <div className="row">
+              <div style={style} className="row">
                   <a><div className="col-sm-1">+</div></a>
                   <div className="col-sm-3">{this.props.name}</div>
               </div>
