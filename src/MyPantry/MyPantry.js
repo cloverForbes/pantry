@@ -6,7 +6,8 @@ export class MyPantry extends React.Component{
         super(props);
 
         this.state = {
-            ingredients : this.props.ingredients
+            ingredients : this.props.ingredients,
+            recipes: []
         };
 
         this.getRecipes = this.getRecipes.bind(this);
@@ -23,8 +24,7 @@ export class MyPantry extends React.Component{
             }
         }).join('');
 
-        let url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ranking=1&limitLicense=false&number=5&ingredients=' + urlIng;
-        console.log(url);
+        let url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ranking=1&limitLicense=false&number=10&ingredients=' + urlIng;
         let options = {
             url: url,
             headers : {
@@ -34,7 +34,16 @@ export class MyPantry extends React.Component{
         };
 
         request.get(options, (err,res,body) => {
-            console.log(body);
+            let data = (JSON.parse(body));
+            data = data.map(item => {
+                if(item.missedIngredientCount === 0){
+                    return item.title;
+                }
+            });
+
+            console.log(data);
+
+            this.setState({recipes: data})
         })
     }
 
@@ -48,7 +57,13 @@ export class MyPantry extends React.Component{
                     })}
                 </ul>
 
-                <button onClick={this.getRecipes} style={{display: this.props.ingredients.length > 0 ? '' : 'none'}} className="btn btn-secondary">Get Recipies</button>
+                <button onClick={this.getRecipes} style={{display: this.props.ingredients.length > 0 ? '' : 'none'}} className="btn btn-secondary">Get Recipes</button>
+                <h3 style={{display: this.props.ingredients.length > 0 ? '' : 'none'}}>Recipes</h3>
+                <ul style={{display: this.props.ingredients.length > 0 ? '' : 'none'}}>
+                    {this.state.recipes.map((item,key) =>{
+                        return <li key={key}>{item}</li>
+                    })}
+                </ul>
             </div>
         );
     }

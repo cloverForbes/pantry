@@ -33,7 +33,6 @@ export class Search extends React.Component{
 
     getSearches= num =>{
         this.setState({searches: num});
-        console.log(num);
     };
 
     render(){
@@ -43,7 +42,6 @@ export class Search extends React.Component{
                 <SearchBar getSearches={this.getSearches}  getData={this.getData}/>
                 <ul>
                     {this.state.ingredients.map((item, key) => {
-                        console.log(this.state.searches);
                         return <Ingredient visible={true} getIngredient={this.getIngredient} name={item} key={this.state.searches +''+key} />
                     })}
                 </ul>
