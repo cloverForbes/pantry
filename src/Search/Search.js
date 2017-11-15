@@ -34,10 +34,11 @@ export class Search extends React.Component{
         return (
             <div className="Panel">
                 <h2 className="panel-title">Search</h2>
-                <SearchBar getData={this.getData}/>
+                <SearchBar  getData={this.getData}/>
                 <ul>
                     {this.state.ingredients.map((item, key) => {
-                        return <Ingredient getIngredient={this.getIngredient} key={key}> {item} </Ingredient>
+                        console.log(item);
+                        return <Ingredient visible={true} getIngredient={this.getIngredient} name={item} key={key} />
                     })}
                 </ul>
             </div>

@@ -39,7 +39,6 @@ export class MyPantry extends React.Component{
     }
 
     render(){
-        console.log(this.props.ingredients);
         return (
             <div className="Panel">
                 <h3 className="panel-title">My Pantry</h3>

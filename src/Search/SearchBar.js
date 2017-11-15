@@ -39,7 +39,7 @@ export class SearchBar extends React.Component {
             this.props.getData(this.state.results);
             this.setState({
                 value: ''
-            })
+            });
         })
 
     }

@@ -17,7 +17,6 @@ class App extends Component {
 
   getIngredients(ingredients){
       this.setState({myIngredients: ingredients});
-      setTimeout(console.log(this.state), 100);
   }
 
   render() {

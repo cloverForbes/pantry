@@ -5,8 +5,7 @@ export class Ingredient extends React.Component {
         super(props);
 
         this.state = {
-            visible: true,
-            name: this.props.children[1]
+            visible: this.props.visible
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -17,7 +16,7 @@ export class Ingredient extends React.Component {
             visible: false
         });
 
-        this.props.getIngredient(this.state.name);
+        this.props.getIngredient(this.props.name);
     }
 
 
@@ -26,10 +25,10 @@ export class Ingredient extends React.Component {
             display : this.state.visible ? null : 'none'
         };
         return(
-          <div onClick={this.handleClick} style={style} className="Ingredient container">
+          <div onClick={this.handleClick}  className="Ingredient container">
               <div className="row">
                   <a><div className="col-sm-1">+</div></a>
-                  <div className="col-sm-3">{this.state.name}</div>
+                  <div className="col-sm-3">{this.props.name}</div>
               </div>
           </div>
         );
